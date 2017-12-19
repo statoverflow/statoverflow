@@ -41,16 +41,53 @@ app.get('/api/v1/questions', (req, res) => {
 
 
   // {lang: 'java', terms: 'item1; item2; item3'}
-  let url = 'https://api.stackexchange.com/2.2/';
-  let query = 'questions?order=desc&sort=activity';
-  query += `&tagged=${req.query.lang}`;
-  console.log(`This is our query object!: ${JSON.stringify(req.query)}`)
-  if(req.query.terms) query += `;${req.query.terms}`;
-  query += `&site=stackoverflow&key=${API_KEY}`;
-  console.log('this is the URL: ' + url);
+//  let url = 'https://api.stackexchange.com/2.2/';
+  // let query = 'questions?order=desc&sort=activity';
+  // query += `&tagged=${req.query.lang}`;
+  // console.log(`This is our query object!: ${JSON.stringify(req.query)}`)
+  // if(req.query.terms) query += `;${req.query.terms}`;
+  // query += `&site=stackoverflow&key=${API_KEY}`;
+  // console.log('this is the URL: ' + url);
   // console.log('query-',query);
 
-  superagent.get(url+query)
+  // superagent.get(url+query)
+
+
+  // is_answered, title, link, creation_date
+  // owner: profile_image, display_name, link
+
+  superagent.get('https://api.stackexchange.com/2.2/questions')
+    // .query({tagged: 'javascript'})
+    .query({tagged: `${req.query.tags}`})
+    .query({order: 'desc'})
+    .query({sort: 'activity'})
+    .query({site: 'stackoverflow'})
+    .query({key: `${API_KEY}`})
+    .then(console.log('tags:', req.query.tags))
+    .then (res => res.body.items.map((question, idx) => {
+      // let {title, link, creation_date, is_answered} = question;
+      // let {display_name, profile_image, user_link} = question.owner;
+      return {
+        title: question.title ? question.title : 'no question title',
+        link: question.link ? question.link: 'no question link',
+        user: question.owner.display_name ? question.owner.display_name : 'no username',
+        user_image: question.owner.profile_image ? question.owner.profile_image : 'no user image',
+        user_link: question.owner.link ? question.owner.link : 'no user link',
+        creation_date: question.creation_date ? question.creation_date : 'no date of creation',
+        is_answered: question.is_answered ? question.is_answered : 'unsure if answered'
+      }
+    }))
+    .then(arr => res.send(arr))
+    .catch(console.error)
+})
+      // let {title, link, creation_date, is_answered} = response.body.items[i]
+      //
+      // return {
+      //   title: title ? title : 'no question title',
+
+      //}
+    //)
+
 
     /*
     .then(response => response.body.items.map((book, idx) => {
@@ -68,7 +105,7 @@ app.get('/api/v1/questions', (req, res) => {
     }))
     */
     // .query('')
-    .then (response => console.log('my id is: ', response.body.items[1].question_id)) // this works!
+//.then (response => console.log('my id is: ', response.body.items[1].question_id)) // this works!
     // .then(response.body.items.forEach(function(entry){
     //   let title = item.title;
     //   let creation_date = item.creation_date;
@@ -83,15 +120,15 @@ app.get('/api/v1/questions', (req, res) => {
     //   return {title, creation_date, is_answered}
     // }))
 
-      
-    
+
+
     // .then(response => response.item.map((item, id) => {
     //   console.log('hello, is this a response?');
     // }))
 
-    .then(arr => res.send(arr))
-    .catch(console.error)
-})
+    // .then(arr => res.send(arr))
+    // .catch(console.error)
+// })
 
 app.get('/questions/lang=javascript&terms=regex', (req, res) => {
     client.query(`SELECT * FROM ourtable WHERE;`)
