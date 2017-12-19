@@ -68,7 +68,13 @@ app.get('/api/v1/questions', (req, res) => {
     }))
     */
     // .query('')
-    .then (response => console.log('my id is: ', response.body.items[2].question_id))
+    .then (response => console.log('my id is: ', response.body.items[1].question_id)) // this works!
+    // .then(response.body.items.forEach(function(entry){
+    //   let title = item.title;
+    //   let creation_date = item.creation_date;
+    //   let is_answered = item.is_answered;
+    //   return {title, creation_date, is_answered}
+    // }))
     // .then (response => response.body.items.forEach(entry => {
     //   let title = item.title;
     //   let creation_date = item.creation_date;
