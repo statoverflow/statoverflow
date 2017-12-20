@@ -64,7 +64,6 @@ app.get('/api/v1/questions/', (req, res) => {
 // return top users
 app.get('/api/v1/top-users/', (req, res) => {
   superagent.get(baseUrl += 'users')
-  // .query({tagged: `${req.query.tags}`})
   .query({order: 'desc'})
   .query({sort: 'reputation'})
   .query({site: 'stackoverflow'})
