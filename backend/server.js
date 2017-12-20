@@ -65,7 +65,7 @@ app.get('/api/v1/questions/', (req, res) => {
 app.get('/api/v1/top-users/', (req, res) => {
   superagent.get(baseUrl += 'users')
   .query({order: 'desc'})
-  .query({sort: 'reputation'})
+  .query({sort: `${req.query.sort}`}) // either location or reputation
   .query({site: 'stackoverflow'})
   .query({key: `${API_KEY}`})
   .then (res => res.body.items.map((user, idx) => {
