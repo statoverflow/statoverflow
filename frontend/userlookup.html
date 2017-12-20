@@ -52,7 +52,7 @@
 
       <form id="user_search_container">
         <label for="search_user">
-          <input type="text" name="search_user" id="search_user" placeholder="Username">
+          <input type="text" name="search_user" id="search_user" placeholder="Username" value="jon-skeet">
           <button name="search_user_button" id="search_user_button"><div class="icon-search"></div></button>
         </label>
       </form>
@@ -125,12 +125,12 @@
 
       function searchUsers(){
         let username = document.querySelector('#search_user').value;
-        console.log(`language: ${username}`);
+        console.log(`username: ${username}`);
         $.ajax({
-          url: `${__API_URL__}/api/v1/users/`,
+          url: `${__API_URL__}/api/v1/user/`,
           method: 'GET',
           data: {
-            search: name
+            search: username
           }
         }).done(function (data) {
           console.log('I recieved something', data);
@@ -163,6 +163,7 @@
           console.error(error, xhr);
         });
       }
+      searchUsers();
     </script>
   </body>
 </html>
