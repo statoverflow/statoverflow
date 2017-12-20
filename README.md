@@ -21,6 +21,7 @@ We are going to be using the JQuery and Handlebars libraries, as well as other s
 <!-- Use this are to document the iterative changes made to your application as each feature is successfully implemented. Use time stamps. Here's an examples: -->
 
 12-18-2017 - Decided on an API to use (stackoverflow), wireframed our mock ups, uploaded initial scaffold.
+12-19-2017 - Added index, userlookup page styling with css, worked on API my making functional get requests possible to the API (built routes)
 
 ## Credits and Collaborations
 <!-- Give credit (and a link) to other people or resources that helped you build this application. -->

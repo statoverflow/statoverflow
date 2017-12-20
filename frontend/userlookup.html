@@ -2,6 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
     <title>Stat Overflow</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
@@ -22,6 +23,60 @@
       </nav>
     </header>
     <main>
+      <h1>Look up stack overflow user</h1>
+
+      <form>
+        <label for="search_user">
+          <input type="text" name="search_user" placeholder="Username">
+          <button type="submit" name="search_user_button">S</button>
+        </label>
+      </form>
+
+      <div id="user_search_result">
+        <img id="user_search_img" src="http://placehold.it/100x100" />
+        <div id="user_search_container1">
+          <h2 id="user_search_username"><a href="index.html">Username</a></h2>
+          <p id="user_search_rep">Reputation: #######</p>
+        </div>
+        <div id="user_search_container2">
+          <p id="user_search_date_reg">Date registered: ##-##-####</p>
+          <p id="user_search_date_accessed">Last Accessed: ##-##-####</p>
+        </div>
+      </div>
+
+      <section id="user_search_recent">
+        <h2>Recent Questions</h2>
+        <div class="recent_search">
+          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
+          <span>##-##-####</span>
+          <a href="#">View</a>
+        </div>
+        <div class="recent_search">
+          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
+          <span>##-##-####</span>
+          <a href="#">View</a>
+        </div>
+        <div class="recent_search">
+          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
+          <span>##-##-####</span>
+          <a href="#">View</a>
+        </div>
+        <div class="recent_search">
+          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
+          <span>##-##-####</span>
+          <a href="#">View</a>
+        </div>
+        <div class="recent_search">
+          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
+          <span>##-##-####</span>
+          <a href="#">View</a>
+        </div>
+      </section>
+
+      <div id="user_search_map_container">
+        <p id="user_search_map_location"><b>Location: </b> City, Country</p>
+        <img id="user_search_map" src="http://placehold.it/1000x400" />
+      </div>
 
     </main>
     <footer>
