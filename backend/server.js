@@ -82,20 +82,39 @@ app.get('/api/v1/user/', (req, res) => {
 });
 
 // return top users
+// app.get('/api/v1/top-users/', (req, res) => {
+//   superagent.get(baseUrl + 'users')
+//   .query({order: 'desc'})
+//   .query({sort: `${req.query.sort}`}) // either location or reputation
+//   .query({site: 'stackoverflow'})
+//   .query({key: `${API_KEY}`})
+//   .then (res => res.body.items.map((user, idx) => {
+//     return {
+//       user: user.display_name ? user.display_name : 'no user name',
+//       link: user.link ? user.link: 'no user link',
+//       user_image: user.profile_image ? user.profile_image : 'no user image',
+//       reputation: user.reputation ? user.reputation : 'user reputation unavailable',
+//       top_answer_rate: user.accept_rate ? user.accept_rate : 'no acceptance rate available',
+//       location: user.location ? user.location : 'no user location'
+//     }
+//   }))
+//   .then(arr => res.send(arr))
+//   .catch(console.error)
+// });
+
+// return top answerers for a specific tag
 app.get('/api/v1/top-users/', (req, res) => {
-  superagent.get(baseUrl + 'users')
-  .query({order: 'desc'})
-  .query({sort: `${req.query.sort}`}) // either location or reputation
+  superagent.get(baseUrl + `tags/${req.query.tag}/top-answerers/all_time`)
   .query({site: 'stackoverflow'})
   .query({key: `${API_KEY}`})
-  .then (res => res.body.items.map((user, idx) => {
+  .then (res => res.body.items.map((answerer, idx) => {
     return {
-      user: user.display_name ? user.display_name : 'no user name',
-      link: user.link ? user.link: 'no user link',
-      user_image: user.profile_image ? user.profile_image : 'no user image',
-      reputation: user.reputation ? user.reputation : 'user reputation unavailable',
-      top_answer_rate: user.accept_rate ? user.accept_rate : 'no acceptance rate available',
-      location: user.location ? user.location : 'no user location'
+      user: answerer.user.display_name ? answerer.user.display_name : 'no user name available',
+      user_link: answerer.user.link ? answerer.user.link: 'no user link available',
+      user_image: answerer.user.profile_image ? answerer.user.profile_image : 'no user image available',
+      user_id: answerer.user.user_id ? answerer.user.user_id : 'no user id available',
+      reputation: answerer.user.reputation ? answerer.user.reputation : 'no answerer reputation available',
+      top_answer_rate: answerer.user.accept_rate ? answerer.user.accept_rate : 'no acceptance rate available',
     }
   }))
   .then(arr => res.send(arr))
@@ -125,11 +144,11 @@ app.get('/api/v1/unanswered-questions/', (req, res) => {
   .catch(console.error)
 });
 
-app.get('/questions/lang=javascript&terms=regex', (req, res) => {
-    client.query(`SELECT * FROM ourtable WHERE;`)
-      .then(results => res.send(results.rows))
-      .catch(console.error);
-});
+// app.get('/questions/lang=javascript&terms=regex', (req, res) => {
+//     client.query(`SELECT * FROM ourtable WHERE;`)
+//       .then(results => res.send(results.rows))
+//       .catch(console.error);
+// });
 
 app.get('*', (req, res) => res.redirect(CLIENT_URL)); // listen for all routes, send to homepage
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`)); // send confirmation to node console
