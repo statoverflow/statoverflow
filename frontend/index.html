@@ -3,10 +3,28 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Stat Overflow</title>
+    <title>Stat Overflow - Home</title>
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="desktop.css">
+
+    <!-- Handlebars Scripts -->
+    <script id="question_results_template" type="text/x-handlebars-template">
+      <div class="result">
+        <img class="result_img" src="{{profile_picture_url}}" alt="profile pic"/>
+        <div class="result_inner_container">
+          <a href="{{question_url}}"><h2>{{question_title}}</h2></a>
+          <p class="result_user"><a href="{{owner_url}}">{{owner_name}}</a></p>
+          <p class="result_answered"><span>Status: </span><span>{{answer_status}}</span></p>
+        </div>
+        <span class="result_date">{{date}}</span>
+      </div>
+    </script>
+
+    <script id="question_count_template" type="text/x-handlebars-template">
+      <p id="results_count">{{num_of_results}} results</p>
+    </script>
+
   </head>
   <body>
     <header>
@@ -47,7 +65,7 @@
 
         <div id="options_form_container">
           <label for="search_type" id="search_type">
-            <input type="radio" name="search_type" value="Unanswered"> Unanswered
+            <input type="radio" name="search_type" value="Unanswered" checked> Unanswered
             <input type="radio" name="search_type" value="Popular"> Popular
           </label>
           <label for="search_type_range" class="filter">

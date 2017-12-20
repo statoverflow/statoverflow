@@ -18,6 +18,12 @@ main h1 {
   text-align: center;
 }
 
+main>h2 {
+  margin-top: 10px;
+  font-weight: bold;
+  display: inline-block;
+}
+
 b {
   font-weight: bold;
 }
@@ -126,6 +132,38 @@ img.logo {
 
 .filter>span{
   display: block;
+}
+
+.stats_recent_keyword {
+  max-width: 55%;
+  max-height: 1rem;
+  overflow: hidden;
+  word-wrap: break-word;
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.stats_recent_date {
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.stats_recent_viewlink {
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.stats_recent_search_container {
+  height: 250px;
+  overflow: scroll;
+}
+
+.stats_recent_search_subcontainer {
+  margin-bottom: 10px;
 }
 
 .recent_search {
@@ -291,4 +329,23 @@ img.logo {
 
 #user_search_rep {
   font-size: 15px;
+}
+
+#chart_info_container {
+  margin-top: 10px;
+}
+
+#chart_placeholder {
+  max-width: 100%;
+}
+
+#chart_info_container span {
+  float: right;
+  opacity: .6;
+  font-size: 15px;
+}
+
+#chart_info_container h2 {
+  font-weight: bold;
+  display: inline-block;
 }

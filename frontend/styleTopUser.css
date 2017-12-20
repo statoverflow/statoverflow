@@ -1,3 +1,6 @@
+#resultTable {
+    width: 100%;
+}
 
 #resultTable tr:nth-last-of-type(odd) {
     background: #ccc;
@@ -12,6 +15,11 @@
     width: 100%;
 }
 
-#testingPoints input{
+#testingPoints input, #testingPoints button{
     border: 1px solid;
+}
+
+#options_form_container label{
+    max-width: 400px;
+    display: inline-block;
 }
