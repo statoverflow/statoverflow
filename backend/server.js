@@ -1,5 +1,9 @@
 'use strict';
 
+
+/***** MIDDLEWARE DECLARATIONS *****/
+
+
 const express = require('express'); // does all the server stuff
 const cors = require('cors');
 const bodyparser = require('body-parser'); // dependency for express
@@ -21,52 +25,28 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static('../frontend'));
 
+// route to the main page
 app.get('/', (req, res) => res.sendFile('index.html', {root: '../frontend'})); // test that we can load a basic page
+
+
+/***** API QUERIES *****/
+
+
+let baseUrl = 'https://api.stackexchange.com/2.2/';
 
 app.get('/api', function(req, res) {
   res.json({ message: 'hooray! welcome to our api!' });
 });
 
-// example from book app
-app.get('/api/v1/questions', (req, res) => {
-  console.log('inside questions query');
-  // console.log(req);
-  console.log('api value: ' + API_KEY);
-    /* const query = `https://www.googleapis.com/books/v1/volumes?`;
-    // inauthor:frank%20herbert+intitle:dune+isbn:9780143111580
-    superagent.get(`${query}`)
-      .query('q' : req.body)
-      .end(function(err, res){})
-      */
-
-
-  // {lang: 'java', terms: 'item1; item2; item3'}
-//  let url = 'https://api.stackexchange.com/2.2/';
-  // let query = 'questions?order=desc&sort=activity';
-  // query += `&tagged=${req.query.lang}`;
-  // console.log(`This is our query object!: ${JSON.stringify(req.query)}`)
-  // if(req.query.terms) query += `;${req.query.terms}`;
-  // query += `&site=stackoverflow&key=${API_KEY}`;
-  // console.log('this is the URL: ' + url);
-  // console.log('query-',query);
-
-  // superagent.get(url+query)
-
-
-  // is_answered, title, link, creation_date
-  // owner: profile_image, display_name, link
-
-  superagent.get('https://api.stackexchange.com/2.2/questions')
-    // .query({tagged: 'javascript'})
+// return all questions defined by tags
+app.get('/api/v1/questions/', (req, res) => {
+  superagent.get(baseUrl += 'questions') // searching within questions
     .query({tagged: `${req.query.tags}`})
     .query({order: 'desc'})
     .query({sort: 'activity'})
     .query({site: 'stackoverflow'})
     .query({key: `${API_KEY}`})
-    .then(console.log('tags:', req.query.tags))
     .then (res => res.body.items.map((question, idx) => {
-      // let {title, link, creation_date, is_answered} = question;
-      // let {display_name, profile_image, user_link} = question.owner;
       return {
         title: question.title ? question.title : 'no question title',
         link: question.link ? question.link: 'no question link',
@@ -79,56 +59,28 @@ app.get('/api/v1/questions', (req, res) => {
     }))
     .then(arr => res.send(arr))
     .catch(console.error)
-})
-      // let {title, link, creation_date, is_answered} = response.body.items[i]
-      //
-      // return {
-      //   title: title ? title : 'no question title',
+});
 
-      //}
-    //)
-
-
-    /*
-    .then(response => response.body.items.map((book, idx) => {
-      let { title, authors, industryIdentifiers, imageLinks, description } = book.volumeInfo;
-      let placeholderImage = 'http://www.newyorkpaddy.com/images/covers/NoCoverAvailable.jpg';
-
-      return {
-        title: title ? title : 'No title available',
-        author: authors ? authors[0] : 'No authors available',
-        isbn: industryIdentifiers ? `ISBN_13 ${industryIdentifiers[0].identifier}` : 'No ISBN available',
-        image_url: imageLinks ? imageLinks.smallThumbnail : placeholderImage,
-        description: description ? description : 'No description available',
-        book_id: industryIdentifiers ? `${industryIdentifiers[0].identifier}` : '',
-      }
-    }))
-    */
-    // .query('')
-//.then (response => console.log('my id is: ', response.body.items[1].question_id)) // this works!
-    // .then(response.body.items.forEach(function(entry){
-    //   let title = item.title;
-    //   let creation_date = item.creation_date;
-    //   let is_answered = item.is_answered;
-    //   return {title, creation_date, is_answered}
-    // }))
-    // .then (response => response.body.items.forEach(entry => {
-    //   let title = item.title;
-    //   let creation_date = item.creation_date;
-    //   let is_answered = item.is_answered;
-
-    //   return {title, creation_date, is_answered}
-    // }))
-
-
-
-    // .then(response => response.item.map((item, id) => {
-    //   console.log('hello, is this a response?');
-    // }))
-
-    // .then(arr => res.send(arr))
-    // .catch(console.error)
-// })
+// return top users
+app.get('/api/v1/top-users/', (req, res) => {
+  superagent.get(baseUrl += 'users')
+  // .query({tagged: `${req.query.tags}`})
+  .query({order: 'desc'})
+  .query({sort: 'reputation'})
+  .query({site: 'stackoverflow'})
+  .query({key: `${API_KEY}`})
+  .then (res => res.body.items.map((user, idx) => {
+    return {
+      user: user.display_name ? user.display_name : 'no user name',
+      link: user.link ? user.link: 'no user link',
+      user_image: user.profile_image ? user.profile_image : 'no user image',
+      reputation: user.reputation ? user.reputation : 'user reputation unavailable',
+      location: user.location ? user.location : 'no user location'
+    }
+  }))
+  .then(arr => res.send(arr))
+  .catch(console.error)
+});
 
 app.get('/questions/lang=javascript&terms=regex', (req, res) => {
     client.query(`SELECT * FROM ourtable WHERE;`)
@@ -136,5 +88,5 @@ app.get('/questions/lang=javascript&terms=regex', (req, res) => {
       .catch(console.error);
 });
 
-  app.get('*', (req, res) => res.redirect(CLIENT_URL)); // listen for all routes, send to homepage
+app.get('*', (req, res) => res.redirect(CLIENT_URL)); // listen for all routes, send to homepage
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`)); // send confirmation to node console
