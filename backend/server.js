@@ -40,10 +40,13 @@ app.get('/api', function(req, res) {
 
 // return all questions defined by tags
 app.get('/api/v1/questions/', (req, res) => {
+  // console.log('url endpoint:', baseUrl + 'questions')
+  console.log('tags:', req.query.tags, '\nsort:', req.query.sort)
   superagent.get(baseUrl + 'questions') // searching within questions
     .query({tagged: `${req.query.tags}`})
+    .query({pagesize: req.query.pagesize})
     .query({order: 'desc'})
-    .query({sort: 'activity'})
+    .query({sort: req.query.sort})
     .query({site: 'stackoverflow'})
     .query({key: `${API_KEY}`})
     .then (res => res.body.items.map((question, idx) => {
@@ -54,7 +57,7 @@ app.get('/api/v1/questions/', (req, res) => {
         user_image: question.owner.profile_image ? question.owner.profile_image : 'no user image',
         user_link: question.owner.link ? question.owner.link : 'no user link',
         creation_date: question.creation_date ? question.creation_date : 'no date of creation',
-        is_answered: question.is_answered ? question.is_answered : 'unsure if answered'
+        is_answered: question.is_answered ? question.is_answered : false
       }
     }))
     .then(arr => res.send(arr))
@@ -126,7 +129,8 @@ app.get('/api/v1/unanswered-questions/', (req, res) => {
   superagent.get(baseUrl + 'questions/unanswered')
   .query({tagged: `${req.query.tags}`})
   .query({order: 'desc'})
-  .query({sort: 'votes'})
+  .query({pagesize: req.query.pagesize})
+  .query({sort: req.query.sort})
   .query({site: 'stackoverflow'})
   .query({key: `${API_KEY}`})
   .then (res => res.body.items.map((question, idx) => {
