@@ -134,6 +134,38 @@ img.logo {
   display: block;
 }
 
+.stats_recent_keyword {
+  max-width: 55%;
+  max-height: 1rem;
+  overflow: hidden;
+  word-wrap: break-word;
+  display: inline-block;
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.stats_recent_date {
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.stats_recent_viewlink {
+  font-size: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
+}
+
+.stats_recent_search_container {
+  height: 250px;
+  overflow: scroll;
+}
+
+.stats_recent_search_subcontainer {
+  margin-bottom: 10px;
+}
+
 .recent_search {
   margin-bottom: 5px;
 }
@@ -309,7 +341,8 @@ img.logo {
 
 #chart_info_container span {
   float: right;
-  opacity: .8;
+  opacity: .6;
+  font-size: 15px;
 }
 
 #chart_info_container h2 {
