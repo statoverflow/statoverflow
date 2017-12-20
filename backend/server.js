@@ -79,6 +79,8 @@ app.get('/api/v1/user/', (req, res) => {
       location: user.location ? user.location : 'no user location'
     }
   }))
+  .then(arr => res.send(arr))
+  .catch(console.error)
 });
 
 // return top users
