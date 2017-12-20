@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+#resultTable th {
+    text-align: left;
+}
+
 #resultTable tr:nth-last-of-type(odd) {
     background: #ccc;
 }
@@ -21,5 +25,10 @@
 
 #options_form_container label{
     max-width: 400px;
+    display: inline-block;
+}
+
+span.count {
+    width: 42px;
     display: inline-block;
 }

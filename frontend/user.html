@@ -50,32 +50,20 @@
     <h2>Stack Overflow Top Contributors</h2>
     <div id="options_form_container">
       <label for="selected_language">
-        <div>Selected Programming Language</div>
+        <div>Programming Language</div>
         <select name="selected_language" id="selected_language">
-          <option value="All languages">All languages</option>
-          <option value="Javascript">Javascript</option>
-          <option value="C#">C#</option>
-          <option value="C++">C++</option>
-          <option value="Python">Python</option>
-          <option value="Java">Java</option>
+          <option value="javascript">Javascript</option>
+          <option value="c%23">C#</option>
+          <option value="c++">C++</option>
+          <option value="python">Python</option>
+          <option value="java">Java</option>
         </select>
       </label>
-      <label for="selected_location">
-        <div>Filter by Location</div>
-        <select name="selected_location" id="selected_location">
-          <option value="All Locations">All Locations</option>
-          <option value="United States">United States</option>
-          <option value="Grenada">Grenada</option>
-        </select>
-      </label>
-
-      <label for="selected_sort">
-        <div>Sort By</div>
-        <select name="selected_sort" id="selected_sort">
-          <option value="reputation">Reputation</option>
-          <option value="creation">Creation</option>
-          <option value="name">Name</option>
-          <option value="modified">Modified</option>
+      <label for="selected_time">
+        <div>Time Range</div>
+        <select name="selected_time" id="selected_time">
+          <option value="all_time">All Time</option>
+          <option value="month">Month</option>
         </select>
       </label>
     </div>
@@ -90,163 +78,13 @@
         </tr>
       </thead>
       <tr>
-        <td>1</td>
-        <td>Jon Skeet</td>
-        <td>99999</td>
-        <td>88</td>
-        <td>United Kingdom</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jon Skeet</td>
-        <td>99999</td>
-        <td>88</td>
-        <td>United Kingdom</td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td>Jon Skeet</td>
-        <td>99999</td>
-        <td>88</td>
-        <td>United Kingdom</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
     </table>
-    <form id="testingPoints">
-      <span>Manual testing fields</span>
-      <input id="address1" type="text">
-      <input id="address2" type="text">
-      <input id="address3" type="text">
-      <input id="address4" type="text">
-      <button id="findAddresses">Find Addresses</button>
-    </form>
-    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-
-    <div id="map"></div>
-    <script>
-      var locations = [
-        ['Bondi Beach', -33.890542, 151.274856, 4],
-        ['Coogee Beach', -33.923036, 151.259052, 5],
-        ['Cronulla Beach', -34.028249, 151.157507, 3],
-        ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-        ['Maroubra Beach', -33.950198, 151.259302, 1]
-      ];
-      // maps URL to geocoding service.
-      // TO DO: Write get request to ask server.js for a user's location. THen, take the result, send to this Google API, and display on the map below.
-      //https://maps.googleapis.com/maps/api/geocode/json?address=Reading, United Kingdom&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w
-
-      function mapRender() {
-        let bound = new google.maps.LatLngBounds();
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 2,
-          center: new google.maps.LatLng(0, 0),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
-        // map.fitBounds(bound);
-        // map.panToBounds(bound);
-
-        var infowindow = new google.maps.InfoWindow();
-
-        var marker, i;
-
-        for (i = 0; i < locations.length; i++) {
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
-          });
-        }
-        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-          return function () {
-            infowindow.setContent(locations[i][0]);
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-      } //end map marker
-      mapRender();
-
-      // event listener for manually testing map points
-      document.querySelector('#findAddresses').addEventListener('click', function (e) {
-        e.preventDefault();
-        console.log(locations);
-        console.log('finding address...')
-        locations = [];
-        let address1 = document.querySelector('#address1').value;
-        let address2 = document.querySelector('#address2').value;
-        let address3 = document.querySelector('#address3').value;
-        $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address1 + '&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w', function (data) {
-          // console.log(data);
-          locations.push([address1, data['results'][0]['geometry']['location']['lat'], data['results'][0]['geometry']['location']['lng']]);
-          console.log(locations);
-          mapRender();
-        })
-
-        $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address2 + '&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w', function (data) {
-          // console.log(data);
-          locations.push([address2, data['results'][0]['geometry']['location']['lat'], data['results'][0]['geometry']['location']['lng']]);
-          console.log(locations);
-          mapRender();
-        })
-      });
-    </script>
-
-    <script>
-      // event listener to monitor specaity menu, country menu. Send as header info to our API Endpoint.
-      // take response and populate it into our table
-      let __API_URL__ = 'http://localhost:3000';
-      document.querySelector('#options_form_container').addEventListener('change', function (e) {
-        let location = document.querySelector('#selected_location').value;
-        let language = document.querySelector('#selected_language').value;
-        // let sort = document.querySelector('#selected_sort').value;
-        let sort = 'reputation';
-        console.log(`language: ${language}, location: ${location}`);
-        $.ajax({
-          url: `${__API_URL__}/api/v1/top-users/`,
-          method: 'GET',
-          data: {
-            location: location,
-            language: language,
-            sort: sort
-          }
-        }).done(function (data) {
-          console.log('I recieved something', data);
-          let thead = `
-          <thead>
-            <tr>
-              <th>Ranking</th>
-              <th>Name</th>
-              <th>Reputation</th>
-              <th>Top Answer Rate</th>
-              <th>Location</th>
-            </tr>
-          </thead>
-          `;
-          $('#resultTable').empty().append(thead);
-          locations = [];
-          data.forEach((x, i) => {
-            let tr =
-              `<tr>
-                <td>${i + 1}</td>
-                <td>${x.user}</td>
-                <td>${x.reputation}</td>
-                <td>${x.accept_rate}</td>
-                <td>${x.location}</td>
-              </tr>
-              `
-            $('#resultTable').append(tr);
-            if (x.location!=="no user location") geocodeAddress(x.location);
-          })
-          // $('#resultTable').html(data);
-        }).fail(function (xhr, status, error) {
-          console.error(error, xhr);
-        });
-      });
-
-      function geocodeAddress(address1) {
-        $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address1 + '&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w', function (data) {
-          locations.push([address1, data['results'][0]['geometry']['location']['lat'], data['results'][0]['geometry']['location']['lng']]);
-          mapRender();
-        })
-      }
-    </script>
   </main>
   <footer>
     <nav>
@@ -265,6 +103,63 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
 
   <script src="app.js"></script>
+
+  <script>
+    // event listener to monitor language menu & time frame menu. Send as header info to our API Endpoint.
+    // take response and populate it into our table
+    let __API_URL__ = 'http://localhost:3000';
+    document.querySelector('#options_form_container').addEventListener('change', function (e) {
+      populateAllUsers();
+    });
+
+    function populateAllUsers(){
+      let time = document.querySelector('#selected_time').value;
+      let lang = document.querySelector('#selected_language').value;
+      // let sort = document.querySelector('#selected_sort').value;
+      let sort = 'reputation';
+      console.log(`language: ${lang}, time: ${time}`);
+      $.ajax({
+        url: `${__API_URL__}/api/v1/top-users/`,
+        method: 'GET',
+        data: {
+          time: time,
+          lang: lang
+        }
+      }).done(function (data) {
+        console.log('I recieved something', data);
+        let thead = `
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Score</th>
+            <th>Reputation</th>
+            <th>Post Count</th>
+            <th>Accept Rate</th>
+          </tr>
+        </thead>
+        `;
+        $('#resultTable').empty().append(thead);
+        locations = [];
+        data.forEach((x, i) => {
+          let tr =
+            `<tr>
+              <td><span class='count'>${i + 1}</span><a href='${x.link}'>${x.user}</a></td>
+              <td>${x.score}</td>
+              <td>${x.reputation}</td>
+              <td>${x.post_count}</td>
+              <td>${x.accept_rate}</td>
+            </tr>
+            `
+          $('#resultTable').append(tr);
+        })
+        // $('#resultTable').html(data);
+      }).fail(function (xhr, status, error) {
+        console.error(error, xhr);
+      });
+    }
+
+    populateAllUsers();
+  </script>
 </body>
 
 </html>
