@@ -7,6 +7,30 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="desktop.css">
+
+    <!-- HANDLEBARS TEMPLATES -->
+    <script id="user_results_template" type="text/x-handlebars-template">
+      <div id="user_search_result">
+        <img id="user_search_img" src="{{profile_picture_url}}" />
+        <div id="user_search_container1">
+          <h2 id="user_search_username"><a href="{{user_url}}">{{username}}</a></h2>
+          <p id="user_search_rep">Reputation: {{reputation_pts}}</p>
+        </div>
+        <div id="user_search_container2">
+          <p id="user_search_date_reg">Date registered: {{date_reg}}</p>
+          <p id="user_search_date_accessed">Last Accessed: {{date_last_access}}</p>
+        </div>
+      </div>
+    </script>
+
+    <script id="user_recent_questions_template" type="text/x-handlebars-template">
+      <div class="recent_search">
+        <span>{{question_title}}</span>
+        <span>{{question_date}}</span>
+        <a href="{{question_url}}">View</a>
+      </div>
+    </script>
+
   </head>
   <body>
     <header>

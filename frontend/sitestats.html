@@ -7,6 +7,15 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="desktop.css">
+
+    <script id="recent_searches_template" type="text/x-handlebars-template">
+      <section class="stats_recent_search_subcontainer">
+        <span class="stats_recent_keyword">{{search_keywords}}</span>
+        <span class="stats_recent_date">{{search_date}}</span>
+        <a class="stats_recent_viewlink" href="{{search_url}}">View</a>
+      </section>
+    </script>
+
   </head>
   <body>
     <header>
@@ -26,71 +35,73 @@
       <h1>Stat Overflow Statistics</h1>
 
       <h2>Recent searches</h2>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
-      <section class="stats_recent_search_container">
-        <span class="stats_recent_keyword">Keywords go here ....</span>
-        <span class="stats_recent_date">##-##-####</span>
-        <a class="stats_recent_viewlink" href="#">View</a>
-      </section>
+      <div class="stats_recent_search_container">
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here .... dfjj dsjfsjs dfjsddsj dfkef  fkefewfm kdf</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+        <section class="stats_recent_search_subcontainer">
+          <span class="stats_recent_keyword">Keywords go here ....</span>
+          <span class="stats_recent_date">##-##-####</span>
+          <a class="stats_recent_viewlink" href="#">View</a>
+        </section>
+      </div>
 
       <div id="chart_info_container">
         <h2>Site usage</h2>
