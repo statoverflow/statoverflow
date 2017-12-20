@@ -1,0 +1,17 @@
+
+#resultTable tr:nth-last-of-type(odd) {
+    background: #ccc;
+}
+
+#resultTable thead tr, #resultTable thead tr:nth-last-of-type(odd){
+    background: #666;
+}
+
+#map {
+    height: 500px;
+    width: 100%;
+}
+
+#testingPoints input{
+    border: 1px solid;
+}
