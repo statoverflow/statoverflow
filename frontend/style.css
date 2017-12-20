@@ -18,6 +18,12 @@ main h1 {
   text-align: center;
 }
 
+main>h2 {
+  margin-top: 10px;
+  font-weight: bold;
+  display: inline-block;
+}
+
 b {
   font-weight: bold;
 }
@@ -291,4 +297,22 @@ img.logo {
 
 #user_search_rep {
   font-size: 15px;
+}
+
+#chart_info_container {
+  margin-top: 10px;
+}
+
+#chart_placeholder {
+  max-width: 100%;
+}
+
+#chart_info_container span {
+  float: right;
+  opacity: .8;
+}
+
+#chart_info_container h2 {
+  font-weight: bold;
+  display: inline-block;
 }
