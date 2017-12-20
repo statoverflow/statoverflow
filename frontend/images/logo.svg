@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="985px" height="680px" viewBox="0 0 985 680" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>logo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="logo" transform="translate(-4.000000, 0.000000)">
+            <g id="Group-2" transform="translate(267.000000, 0.000000)">
+                <polyline id="Path" stroke="#979797" stroke-width="30" points="0 287 1.21106601e-14 493.842656 457.791489 493.842656 457.791504 287"></polyline>
+                <g id="Group" transform="translate(76.000000, 0.000000)" stroke="#EA9D1E" stroke-width="60">
+                    <path d="M0.9375,457.242188 L0.9375,287" id="Path-2"></path>
+                    <path d="M91,457.064862 L91,200.801322" id="Path-2-Copy"></path>
+                    <path d="M195,457.242188 L195,104.88554" id="Path-2-Copy-3"></path>
+                    <path d="M305,457.064862 L305,0.183579382" id="Path-2-Copy-2"></path>
+                </g>
+            </g>
+            <text id="statoverflow" font-family="Arial-BoldMT, Arial" font-size="180" font-weight="bold" fill="#616161">
+                <tspan x="0" y="677">stat</tspan>
+                <tspan x="320.097656" y="677" font-family="ArialMT, Arial" font-weight="normal">overflow</tspan>
+            </text>
+        </g>
+    </g>
+</svg>
