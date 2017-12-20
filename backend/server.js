@@ -42,8 +42,10 @@ app.get('/api', function(req, res) {
 app.get('/api/v1/questions/', (req, res) => {
   superagent.get(baseUrl + 'questions') // searching within questions
     .query({tagged: `${req.query.tags}`})
-    .query({order: 'desc'})
-    .query({sort: 'activity'})
+    // .query({order: 'desc'})
+    .query({order: `${req.query.order}`}) // able to change the method of ordering (asc or desc)
+    // .query({sort: 'activity'})
+    .query({sort: `${req.query.sort}`}) // able to select the method of sorting (activity, votes, creation, hot, week, month)
     .query({site: 'stackoverflow'})
     .query({key: `${API_KEY}`})
     .then (res => res.body.items.map((question, idx) => {
@@ -61,9 +63,32 @@ app.get('/api/v1/questions/', (req, res) => {
     .catch(console.error)
 });
 
-// return the profile of a single user
+// return the profile of a single user from an id
 app.get('/api/v1/user/', (req, res) => {
   superagent.get(baseUrl + 'users/:id')
+  .query({order: 'desc'})
+  .query({sort: 'reputation'})
+  .query({site: 'stackoverflow'})
+  .query({key: `${API_KEY}`})
+  .then (res => res.body.items.map((user, idx) => {
+    return {
+      user: user.display_name ? user.display_name : 'no user name',
+      link: user.link ? user.link: 'no user link',
+      user_image: user.profile_image ? user.profile_image : 'no user image',
+      reputation: user.reputation ? user.reputation : 'user reputation unavailable',
+      creation_date: user.creation_date ? user.creation_date : 'creation date unavailable',
+      last_access_date: user.last_access_date ? user.last_access_date : 'no last access date available',
+      location: user.location ? user.location : 'no user location'
+    }
+  }))
+  .then(arr => res.send(arr))
+  .catch(console.error)
+});
+
+// return the profile of a single user from a searched name
+app.get('/api/v1/user/', (req, res) => {
+  superagent.get(baseUrl + 'users')
+  .query({inname: `${req.query.search}`})
   .query({order: 'desc'})
   .query({sort: 'reputation'})
   .query({site: 'stackoverflow'})
@@ -106,7 +131,7 @@ app.get('/api/v1/user/', (req, res) => {
 
 // return top answerers for a specific tag
 app.get('/api/v1/top-users/', (req, res) => {
-  superagent.get(baseUrl + `tags/${req.query.tag}/top-answerers/all_time`)
+  superagent.get(baseUrl + `tags/${req.query.lang}/top-answerers/${req.query.time}`)
   .query({site: 'stackoverflow'})
   .query({key: `${API_KEY}`})
   .then (res => res.body.items.map((answerer, idx) => {
