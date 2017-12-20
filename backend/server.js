@@ -40,7 +40,7 @@ app.get('/api', function(req, res) {
 
 // return all questions defined by tags
 app.get('/api/v1/questions/', (req, res) => {
-  superagent.get(baseUrl += 'questions') // searching within questions
+  superagent.get(baseUrl + 'questions') // searching within questions
     .query({tagged: `${req.query.tags}`})
     .query({order: 'desc'})
     .query({sort: 'activity'})
@@ -63,7 +63,7 @@ app.get('/api/v1/questions/', (req, res) => {
 
 // return top users
 app.get('/api/v1/top-users/', (req, res) => {
-  superagent.get(baseUrl += 'users')
+  superagent.get(baseUrl + 'users')
   .query({order: 'desc'})
   .query({sort: `${req.query.sort}`}) // either location or reputation
   .query({site: 'stackoverflow'})

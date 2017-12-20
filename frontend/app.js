@@ -17,7 +17,7 @@ $.ajax({
     url: `${__API_URL__}/api/v1/top-users/`,
     method: 'GET',
     data: {
-      location: location,
+      tags: searchKeywords,
       language: language,
       sort: sort
     }
