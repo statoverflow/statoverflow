@@ -50,10 +50,10 @@
     <main>
       <h1>Look up stack overflow user</h1>
 
-      <form>
+      <form id="user_search_container">
         <label for="search_user">
-          <input type="text" name="search_user" placeholder="Username">
-          <button type="submit" name="search_user_button"><div class="icon-search"></div></button>
+          <input type="text" name="search_user" id="search_user" placeholder="Username">
+          <button name="search_user_button" id="search_user_button"><div class="icon-search"></div></button>
         </label>
       </form>
 
@@ -115,5 +115,54 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="app.js"></script>
+    <script>
+      let __API_URL__ = 'http://localhost:3000';
+      document.querySelector('#search_user_button').addEventListener('click', function (e) {
+        if (document.querySelector('#search_user').value !=='') {
+          searchUsers();
+        }
+      });
+
+      function searchUsers(){
+        let username = document.querySelector('#search_user').value;
+        console.log(`language: ${username}`);
+        $.ajax({
+          url: `${__API_URL__}/api/v1/users/`,
+          method: 'GET',
+          data: {
+            search: name
+          }
+        }).done(function (data) {
+          console.log('I recieved something', data);
+          let thead = `
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Score</th>
+              <th>Reputation</th>
+              <th>Post Count</th>
+              <th>Accept Rate</th>
+            </tr>
+          </thead>
+          `;
+          $('#user_search_recent').empty().append(thead);
+          locations = [];
+          data.forEach((x, i) => {
+            let box =
+              `<div class="recent_search">
+                <span><span class='count'>${i + 1}</span><a href='${x.link}'>${x.user}</a></span>
+                <span>${x.score}</span>
+                <span>${x.reputation}</span>
+                <span>${x.post_count}</span>
+                <span>${x.accept_rate}</span>
+              </tr>
+              `
+            $('#user_search_result').append(box);
+          })
+        }).fail(function (xhr, status, error) {
+          console.error(error, xhr);
+        });
+      }
+    </script>
   </body>
 </html>
