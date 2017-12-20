@@ -27,17 +27,25 @@
     <main>
       <h2>Stack Overflow Top Contributors</h2>
       <div id="options_form_container">
-        <label>Select the languages you know:</label>
         <label for="selected_language">
-          <select name="selected_language">
+          <div>Selected Programming Language</div>
+          <select name="selected_language" id="selected_language">
             <option value="All languages">All languages</option>
             <option value="Javascript">Javascript</option>
             <option value="C#">C#</option>
-            <option value="C++">Python</option>
+            <option value="C++">C++</option>
             <option value="Python">Python</option>
             <option value="Java">Java</option>
           </select>
         </label>
+        <label for="selected_location">
+            <div>Filter by Location</div>
+            <select name="selected_location" id="selected_location">
+              <option value="All Locations">All Locations</option>
+              <option value="United States">United States</option>
+              <option value="Grenada">Grenada</option>
+            </select>
+          </label>
       </div>
       <table id="resultTable">
         <thead>
@@ -72,6 +80,7 @@
         </tr>
       </table>
       <form id="testingPoints">
+        <span>Manual testing fields</span>
         <input id="address1" type="text">
         <input id="address2" type="text">
         <input id="address3" type="text">
@@ -89,7 +98,7 @@
           ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
           ['Maroubra Beach', -33.950198, 151.259302, 1]
         ];
-        // maps URL to encode address.
+        // maps URL to geocoding service.
         // TO DO: Write get request to ask server.js for a user's location. THen, take the result, send to this Google API, and display on the map below.
         //https://maps.googleapis.com/maps/api/geocode/json?address=Reading, United Kingdom&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w
 
@@ -97,7 +106,7 @@
         let bound = new google.maps.LatLngBounds();
         var map = new google.maps.Map(document.getElementById('map'), {
         zoom: 2,
-        center: new google.maps.LatLng(-33.92, 151.25),
+        center: new google.maps.LatLng(0, 0),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
       // map.fitBounds(bound);
@@ -122,6 +131,7 @@
       } //end map marker
       mapRender();
 
+      // event listener for manually testing map points
       document.querySelector('#findAddresses').addEventListener('click', function(e){
           e.preventDefault();
           console.log(locations);
@@ -146,17 +156,24 @@
         });
       </script>
       
-      <!-- <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w&callback=initMap">
-      </script> -->
       <script>
-        
-          // pointTotal = Math.floor(Math.random()*5) + 1; // random number between 1 and 6
-          // for (let i = 0; i < pointTotal; i++) {
-          //   locations.push()
-          // }
-
-        
+        // event listener to monitor specaity menu, country menu. Send as header info to our API Endpoint. 
+        // take response and populate it into our table
+        document.querySelector('#options_form_container').addEventListener('change', function(e){
+          let location = document.querySelector('#selected_location').value;
+          let language = document.querySelector('#selected_language').value;
+          console.log(`language: ${language}, location: ${location}`);
+          // $.ajax({
+          //   url: "/api/v1/topusers",
+          //   method: 'PUT',
+          //   data: {
+          //     location: location,
+          //     language: language
+          //   }
+          // }).done(function(data) {
+          //   $('#resultTable').html(data);
+          // });
+        });
       </script>
     </main>
     <footer>
