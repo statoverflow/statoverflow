@@ -64,6 +64,28 @@ app.get('/api/v1/questions/', (req, res) => {
     .catch(console.error)
 });
 
+// return the profile of a single user from an id
+// app.get('/api/v1/user/:id', (req, res) => {
+//   superagent.get(baseUrl + 'users/:id')
+//   .query({order: 'desc'})
+//   .query({sort: 'reputation'})
+//   .query({site: 'stackoverflow'})
+//   .query({key: `${API_KEY}`})
+//   .then (res => res.body.items.map((user, idx) => {
+//     return {
+//       user: user.display_name ? user.display_name : 'no user name',
+//       link: user.link ? user.link: 'no user link',
+//       user_image: user.profile_image ? user.profile_image : 'no user image',
+//       reputation: user.reputation ? user.reputation : 'user reputation unavailable',
+//       creation_date: user.creation_date ? user.creation_date : 'creation date unavailable',
+//       last_access_date: user.last_access_date ? user.last_access_date : 'no last access date available',
+//       location: user.location ? user.location : 'no user location'
+//     }
+//   }))
+//   .then(arr => res.send(arr))
+//   .catch(console.error)
+// });
+
 // return the profile of a single user from a searched name
 app.get('/api/v1/user/', (req, res) => {
   superagent.get(baseUrl + 'users')
@@ -86,27 +108,6 @@ app.get('/api/v1/user/', (req, res) => {
   .then(arr => res.send(arr))
   .catch(console.error)
 });
-
-// return top users
-// app.get('/api/v1/top-users/', (req, res) => {
-//   superagent.get(baseUrl + 'users')
-//   .query({order: 'desc'})
-//   .query({sort: `${req.query.sort}`}) // either location or reputation
-//   .query({site: 'stackoverflow'})
-//   .query({key: `${API_KEY}`})
-//   .then (res => res.body.items.map((user, idx) => {
-//     return {
-//       user: user.display_name ? user.display_name : 'no user name',
-//       link: user.link ? user.link: 'no user link',
-//       user_image: user.profile_image ? user.profile_image : 'no user image',
-//       reputation: user.reputation ? user.reputation : 'user reputation unavailable',
-//       top_answer_rate: user.accept_rate ? user.accept_rate : 'no acceptance rate available',
-//       location: user.location ? user.location : 'no user location'
-//     }
-//   }))
-//   .then(arr => res.send(arr))
-//   .catch(console.error)
-// });
 
 // return top answerers for a specific tag
 app.get('/api/v1/top-users/', (req, res) => {
