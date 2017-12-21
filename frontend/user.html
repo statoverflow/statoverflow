@@ -6,28 +6,19 @@
   <title>Stat Overflow - Top Users</title>
   <meta name="viewport" content="width=device-width">
   <title>Stat Overflow</title>
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="icomoon.css">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="desktop.css">
-  <link rel="stylesheet" href="styleTopUser.css">
-
-  <script id="top_users_table_template" type="text/x-handlebars-template">
-      <tr>
-        <td>{{ranking}}</td>
-        <td>{{user_name}}</td>
-        <td>{{reputation}}</td>
-        <td>{{top_answer_rate}}</td>
-        <td>{{location}}</td>
-      </tr>
-    </script>
+  <link rel="stylesheet" href="/css/reset.css">
+  <link rel="stylesheet" href="/css/icomoon.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/desktop.css">
+  <link rel="stylesheet" href="/css/styleTopUser.css">
+  <link rel="icon" type="image/png" href="/images/favicon.ico" />
 
 </head>
 
 <body>
   <header>
     <div class="logo" id="logo_container">
-      <img class="logo" src="./images/logo.svg" alt="stat overflow logo" />
+      <img class="logo" src="./images/logo-big.svg" alt="stat overflow logo" />
       <!-- <h1 class="logo">Stat Overflow</h1> -->
     </div>
 
@@ -36,7 +27,7 @@
         <div id="questions_icon" class="icon-home"></div>
       </a>
       <a href="./user.html">
-        <div id="users_icon" class="icon-trophy"></div>
+        <div id="users_icon" class="icon-trophy active"></div>
       </a>
       <a href="./userlookup.html">
         <div id="userlookup_icon" class="icon-user"></div>
@@ -47,7 +38,7 @@
     </nav>
   </header>
   <main>
-    <h2>Stack Overflow Top Contributors</h2>
+    <h1>Stack Overflow Top Contributors</h1>
     <div id="options_form_container">
       <label for="selected_language">
         <div>Programming Language</div>
@@ -93,15 +84,12 @@
       </a>
     </nav>
 
-    <p id="copyright_info">&copy; Stat Overflow development team (
-      <a href="https://github.com/gricha2380">Gregor</a>,
-      <a href="https://github.com/jpjazzy">Jeremy</a> and
-      <a href="https://github.com/Jordanwvn">Jordan</a>)</p>
+    <p id="copyright_info">&copy; Stat Overflow development team (<a href="https://github.com/gricha2380" target="_blank">Gregor</a>, <a href="https://github.com/jpjazzy" target="_blank">Jeremy</a> and <a href="https://github.com/Jordanwvn" target="_blank">Jordan</a>)</p>
   </footer>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-  <script src="topuser.js"></script>
+  <script src="/js/topuser.js"></script>
 </body>
 
 </html>

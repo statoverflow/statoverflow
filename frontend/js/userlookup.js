@@ -49,7 +49,7 @@ function searchUsers(){
         `
       $('#user_search_result').append(box);
 
-    if (x.location!=="N/A") geocodeAddress(x.location);
+    if (x.location !== 'no user location') geocodeAddress(x.location);
 
     console.log(locations);
     mapRender();
