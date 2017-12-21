@@ -64,7 +64,7 @@ app.get('/api/v1/questions/', (req, res) => {
     .catch(console.error)
 });
 
-// return the profile of a single user
+// return the profile of a single user from an id
 app.get('/api/v1/user/', (req, res) => {
   superagent.get(baseUrl + 'users/:id')
   .query({order: 'desc'})
@@ -82,6 +82,31 @@ app.get('/api/v1/user/', (req, res) => {
       location: user.location ? user.location : 'no user location'
     }
   }))
+  .then(arr => res.send(arr))
+  .catch(console.error)
+});
+
+// return the profile of a single user from a searched name
+app.get('/api/v1/user/', (req, res) => {
+  superagent.get(baseUrl + 'users')
+  .query({inname: `${req.query.search}`})
+  .query({order: 'desc'})
+  .query({sort: 'reputation'})
+  .query({site: 'stackoverflow'})
+  .query({key: `${API_KEY}`})
+  .then (res => res.body.items.map((user, idx) => {
+    return {
+      user: user.display_name ? user.display_name : 'no user name',
+      link: user.link ? user.link: 'no user link',
+      user_image: user.profile_image ? user.profile_image : 'no user image',
+      reputation: user.reputation ? user.reputation : 'user reputation unavailable',
+      creation_date: user.creation_date ? user.creation_date : 'creation date unavailable',
+      last_access_date: user.last_access_date ? user.last_access_date : 'no last access date available',
+      location: user.location ? user.location : 'no user location'
+    }
+  }))
+  .then(arr => res.send(arr))
+  .catch(console.error)
 });
 
 // return top users
@@ -107,17 +132,18 @@ app.get('/api/v1/user/', (req, res) => {
 
 // return top answerers for a specific tag
 app.get('/api/v1/top-users/', (req, res) => {
-  superagent.get(baseUrl + `tags/${req.query.tag}/top-answerers/all_time`)
+  superagent.get(baseUrl + `tags/${req.query.lang}/top-answerers/${req.query.time}`)
   .query({site: 'stackoverflow'})
   .query({key: `${API_KEY}`})
-  .then (res => res.body.items.map((answerer, idx) => {
+  .then (res => res.body.items.map((item, idx) => {
     return {
-      user: answerer.user.display_name ? answerer.user.display_name : 'no user name available',
-      user_link: answerer.user.link ? answerer.user.link: 'no user link available',
-      user_image: answerer.user.profile_image ? answerer.user.profile_image : 'no user image available',
-      user_id: answerer.user.user_id ? answerer.user.user_id : 'no user id available',
-      reputation: answerer.user.reputation ? answerer.user.reputation : 'no answerer reputation available',
-      top_answer_rate: answerer.user.accept_rate ? answerer.user.accept_rate : 'no acceptance rate available',
+      user: item.user.display_name ? item.user.display_name : 'N/A',
+      link: item.user.link ? item.user.link: '#',
+      user_image: item.user.profile_image ? item.user.profile_image : 'N/A',
+      score: item.score ? item.score : 'N/A',
+      reputation: item.user.reputation ? item.user.reputation : 'N/A',
+      post_count: item.post_count ? item.post_count : 'N/A',
+      accept_rate: item.user.accept_rate ? item.user.accept_rate : '-'
     }
   }))
   .then(arr => res.send(arr))
