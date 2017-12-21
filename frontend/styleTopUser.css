@@ -23,3 +23,7 @@
     max-width: 400px;
     display: inline-block;
 }
+
+td {
+  max-width: 70px;
+}
