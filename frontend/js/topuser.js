@@ -36,7 +36,7 @@ function populateAllUsers(){
     data.forEach((x, i) => {
       let tr =
         `<tr>
-          <td><span class='count'>${i + 1}</span><a href='${x.link}'>${x.user}</a></td>
+          <td><span class='count'>${i + 1}</span><a href='${x.link}' target='_blank'>${x.user}</a></td>
           <td>${x.score}</td>
           <td>${x.reputation}</td>
           <td>${x.post_count}</td>
