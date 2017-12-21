@@ -3,7 +3,7 @@
 $( document ).ready(function() {
 
 // globals
-let __API_URL__ = 'http://localhost:3000';
+let __API_URL__ = 'https://statoverflow.herokuapp.com/';
 // var locations = [];
 let locations = ['Bondi Beach', -33.890542, 151.274856, 4];
 

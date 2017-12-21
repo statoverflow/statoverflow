@@ -13,7 +13,9 @@
 // export CLIENT_URL='http://localhost:8080'
 // export DATABASE_URL='postgres://postgres:password@localhost:5432/books_app'
 
-let __API_URL__ = 'http://localhost:3000'; // API URL
+// let __API_URL__ = 'http://localhost:3000'; // API URL
+let __API_URL__ = 'https://statoverflow.herokuapp.com/'; // API URL (LIVE URL)
+
 
 // adds the form input to local storage
 let addToStorage = function (inputName, inputValue) {
