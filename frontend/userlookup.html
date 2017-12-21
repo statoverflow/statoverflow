@@ -32,6 +32,12 @@
       </div>
     </script>
 
+    <style>
+    #map {
+      height: 500px;
+      width: 100%;
+    }
+</style>
   </head>
   <body>
     <header>
@@ -100,7 +106,7 @@
 
       <div id="user_search_map_container">
         <p id="user_search_map_location"><b>Location: </b> City, Country</p>
-        <img id="user_search_map" src="http://placehold.it/1000x400" />
+        <div id="map"></div>
       </div>
 
     </main>
@@ -114,15 +120,26 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
     <script src="app.js"></script>
-    <script>
-      let __API_URL__ = 'http://localhost:3000';
-      document.querySelector('#search_user_button').addEventListener('click', function (e) {
-        if (document.querySelector('#search_user').value !=='') {
-          searchUsers();
-        }
-      });
 
+    <script>
+      $( document ).ready(function() {
+
+      // globals
+      let __API_URL__ = 'http://localhost:3000';
+      // var locations = [];
+      let locations = ['Bondi Beach', -33.890542, 151.274856, 4];
+
+        // event listener for user search 
+        document.querySelector('#search_user_button').addEventListener('click', function (e) {
+          e.preventDefault();
+          if (document.querySelector('#search_user').value !=='') {
+            searchUsers();
+          }
+        });
+
+      //ajax call for user search
       function searchUsers(){
         let username = document.querySelector('#search_user').value;
         console.log(`username: ${username}`);
@@ -134,36 +151,75 @@
           }
         }).done(function (data) {
           console.log('I recieved something', data);
-          let thead = `
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Score</th>
-              <th>Reputation</th>
-              <th>Post Count</th>
-              <th>Accept Rate</th>
-            </tr>
-          </thead>
-          `;
-          $('#user_search_recent').empty().append(thead);
-          locations = [];
+          $('#user_search_result').empty();
+          // locations = [];
           data.forEach((x, i) => {
             let box =
-              `<div class="recent_search">
-                <span><span class='count'>${i + 1}</span><a href='${x.link}'>${x.user}</a></span>
-                <span>${x.score}</span>
-                <span>${x.reputation}</span>
-                <span>${x.post_count}</span>
-                <span>${x.accept_rate}</span>
-              </tr>
               `
+                <div class="user_search_result">
+                    <span class='count'>${i + 1}</span>
+                    <img class="user_search_img" src="${x.user_image}" />
+                    <div class="user_search_container1">
+                      <h2 class="user_search_username"><a href="${x.link}">${x.user}</a></h2>
+                      <p class="user_search_rep">Reputation: ${x.reputation}</p>
+                    </div>
+                    <div class="user_search_container2">
+                      <p class="user_search_date_reg">Date registered: ${x.creation_date}</p>
+                      <p class="user_search_date_accessed">Last Accessed: ${x.last_access_date}</p>
+                      <p class="user_search_date_accessed">Location: ${x.location}</p>
+                    </div>
+                  </div>
+              </div>
+              `              
             $('#user_search_result').append(box);
+
+          if (x.location!=="N/A") geocodeAddress(x.location);
+            
+          console.log(locations);
+          mapRender();
           })
         }).fail(function (xhr, status, error) {
           console.error(error, xhr);
         });
       }
       searchUsers();
+
+      // get lat long from text addresses
+      function geocodeAddress(address1) {
+        $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address1 + '&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w', function (data) {
+          locations.push([address1, data['results'][0]['geometry']['location']['lat'], data['results'][0]['geometry']['location']['lng']]);
+          mapRender();
+        })
+      }
+
+      // map render
+      function mapRender() {
+        let bound = new google.maps.LatLngBounds();
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 2,
+          center: new google.maps.LatLng(0, 0),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+        // map.fitBounds(bound);
+        // map.panToBounds(bound);
+        var infowindow = new google.maps.InfoWindow();
+        var marker, i;
+        for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+          });
+        }
+        google.maps.event.addListener(marker, 'click', (function (marker, i) {
+          return function () {
+            infowindow.setContent(locations[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      } //end map marker
+      mapRender();
+
+    }); // document ready
     </script>
   </body>
 </html>
