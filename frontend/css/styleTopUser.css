@@ -7,8 +7,10 @@
     background: #ccc;
 }
 
+
 #resultTable thead tr, #resultTable thead tr:nth-last-of-type(odd){
-    background: #666;
+    background: #005AB2;
+    color: white;
 }
 
 #map {
@@ -23,6 +25,10 @@
 #options_form_container label{
     max-width: 400px;
     display: inline-block;
+    padding-right: 3rem;
+}
+#options_form_container label:last-of-type {
+    padding-right: 0;
 }
 
 #resultTable th {
@@ -36,4 +42,6 @@ span.count {
 
 td {
   max-width: 70px;
+  padding: .5rem;
+  vertical-align: middle;
 }

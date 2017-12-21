@@ -10,12 +10,15 @@ body {
 header {
   background: #666;
   color: #FFF;
+  padding: .1rem .5rem;
 }
 
 main h1 {
   font-size: 25px;
-  font-weight: bold;
   text-align: center;
+  padding: 1rem 0;
+  font-family: sans-serif;
+  font-weight: initial;
 }
 
 main>h2 {
@@ -33,12 +36,30 @@ main form {
 }
 
 header nav div {
-  color: #000;
+  color: #fff;
   font-size: 20px;
   width: 30px;
   height: 30px;
   display: inline-block;
   margin-top: 10px;
+  transition: all 350ms;
+}
+
+header nav div:hover {
+  color: rgb(255, 198, 102);
+}
+
+.active {
+  color: #E99D1E;
+  
+}
+
+.active:hover {
+  color: #E99D1E;
+}
+
+nav a {
+  text-decoration: none;
 }
 
 header nav {
@@ -78,7 +99,7 @@ h1.logo {
 }
 
 img.logo {
-  max-width: 110px;
+  max-width: 160px;
 }
 
 .logo {
@@ -105,7 +126,8 @@ img.logo {
 .result_date {
   font-size: 12px;
   margin-right: 20px;
-  float: right;
+  position: absolute;
+  right: 0;
 }
 
 .result_user>a {
@@ -120,6 +142,8 @@ img.logo {
 .result {
   display: flex;
   margin-bottom: 10px;
+  padding: .5rem;
+  position: relative;
 }
 
 .result:nth-child(odd) {
@@ -189,10 +213,31 @@ img.logo {
   margin-left: 5px;
 }
 
+.user_search_result {
+  display: table;
+  width: 100%;
+}
+
+img.user_search_img {
+  vertical-align: middle;
+}
+
+.user_search_container1 {
+  display: inline-block;
+  vertical-align: middle;
+  padding-left: 1rem;
+  min-width: 15rem;
+}
+.user_search_container2 {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 /****************** ID TARGETTING *****************/
 #copyright_info {
   text-align: center;
   font-size: 12px;
+  padding-bottom: .5rem;
 }
 
 #copyright_info a {
@@ -245,7 +290,10 @@ img.logo {
 
 #options_form_container {
   padding: 10px;
-  background: #666;
+  background: #005AB2;
+  color: white;
+  text-align: center;
+  padding-bottom: 2rem;
 }
 
 #bottom_form_container {
@@ -265,8 +313,16 @@ img.logo {
 }
 
 #search_type input{
-  margin-left: 12%;
-  transform: scale(2);
+  
+}
+
+.label_container {
+  display: inline-block;
+  padding-right: 3rem;
+  padding-bottom: 1.5rem;
+}
+.label_container:last-of-type {
+  padding-right: 0;
 }
 
 #user_search_img {
@@ -282,9 +338,8 @@ img.logo {
 }
 
 #user_search_result {
-  display: flex;
-  width: 100%;
-  height: 150px;
+  /* display: flex; */
+  /* width: 100%; */
 }
 
 #user_search_recent h2 {
