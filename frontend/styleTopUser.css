@@ -1,5 +1,6 @@
 #resultTable {
     width: 100%;
+    min-height: 80vh;
 }
 
 #resultTable tr:nth-last-of-type(odd) {
@@ -22,4 +23,17 @@
 #options_form_container label{
     max-width: 400px;
     display: inline-block;
+}
+
+#resultTable th {
+    text-align: left;
+}
+
+span.count {
+    width: 42px;
+    display: inline-block;
+}
+
+td {
+  max-width: 70px;
 }

@@ -31,13 +31,12 @@
         <a href="{{question_url}}">View</a>
       </div>
     </script>
-
   </head>
   <body>
     <header>
       <div class="logo" id="logo_container">
         <img class="logo" src="./images/logo.svg" alt="stat overflow logo"/>
-        <h1 class="logo">Stat Overflow</h1>
+        <!-- <h1 class="logo">Stat Overflow</h1> -->
       </div>
 
       <nav>
@@ -50,10 +49,10 @@
     <main>
       <h1>Look up stack overflow user</h1>
 
-      <form>
+      <form id="user_search_container">
         <label for="search_user">
-          <input type="text" name="search_user" placeholder="Username">
-          <button type="submit" name="search_user_button"><div class="icon-search"></div></button>
+          <input type="text" name="search_user" id="search_user" placeholder="Username" value="Jon Skeet">
+          <button name="search_user_button" id="search_user_button"><div class="icon-search"></div></button>
         </label>
       </form>
 
@@ -68,39 +67,9 @@
           <p id="user_search_date_accessed">Last Accessed: ##-##-####</p>
         </div>
       </div>
-
-      <section id="user_search_recent">
-        <h2>Recent Questions</h2>
-        <div class="recent_search">
-          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
-          <span>##-##-####</span>
-          <a href="#">View</a>
-        </div>
-        <div class="recent_search">
-          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
-          <span>##-##-####</span>
-          <a href="#">View</a>
-        </div>
-        <div class="recent_search">
-          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
-          <span>##-##-####</span>
-          <a href="#">View</a>
-        </div>
-        <div class="recent_search">
-          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
-          <span>##-##-####</span>
-          <a href="#">View</a>
-        </div>
-        <div class="recent_search">
-          <span>Question goes here.. hfhds s hds fsdhf hsdfhds hfsd </span>
-          <span>##-##-####</span>
-          <a href="#">View</a>
-        </div>
-      </section>
-
       <div id="user_search_map_container">
         <p id="user_search_map_location"><b>Location: </b> City, Country</p>
-        <img id="user_search_map" src="http://placehold.it/1000x400" />
+        <div id="map"></div>
       </div>
 
     </main>
@@ -114,6 +83,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script src="app.js"></script>
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+    <script src="userlookup.js"></script>
   </body>
 </html>

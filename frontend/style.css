@@ -78,7 +78,7 @@ h1.logo {
 }
 
 img.logo {
-  max-width: 50px;
+  max-width: 110px;
 }
 
 .logo {
@@ -233,7 +233,7 @@ img.logo {
 }
 
 #results_section {
-  height: 340px;
+  height: 480px;
   overflow: scroll;
 }
 
@@ -350,4 +350,9 @@ img.logo {
 #chart_info_container h2 {
   font-weight: bold;
   display: inline-block;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
 }
