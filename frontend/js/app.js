@@ -15,8 +15,59 @@
 
 let __API_URL__ = 'http://localhost:3000'; // API URL
 
-$('#search_form').on('submit', function (e) {
+// adds the form input to local storage
+let addToStorage = function (inputName, inputValue) {
+  localStorage[`${inputName}`] = `${inputValue}`;
+}
+
+// replace the current fillFormFromStorage with this:
+let takeFromStorage = function (inputName, inputValue) {
+  if (localStorage[`${inputName}`]) inputValue = localStorage[`${inputName}`];
+}
+
+// new code
+let fillFormFromStorage = () => {
+  //takeFromStorage ('selected_language', $('#search_form select[name="selected_language"]').val());
+  // $('#search_form select[name="selected_language"]').val(takeFromStorage ('selected_language', $('#search_form select[name="selected_language"]')));
+  if (localStorage.selected_language) {
+    $('#search_form select[name="selected_language"]').val(localStorage.getItem('selected_language'))
+    $('#'+ localStorage.search_type).prop('checked', true);
+
+    $('#search_form select[name="selected_criteria"]').val(localStorage.getItem('selected_criteria'))
+    $('#search_form select[name="selected_criteria"]').val(localStorage.getItem('selected_criteria'))
+
+    // takeFromStorage ('search_type', $('input[name="search_type"]:checked', '#search_form').val());
+    $('#search_form select[name="search_type_numresults"]').val(localStorage.getItem('search_type_numresults'))
+    $('#search_form select[name="search_type_sort"]').val(localStorage.getItem('search_type_sort'))
+  }
+}
+
+// still run fillFormFromStorage at page load
+
+// adds data from every form involved in the search form to local storage
+let retainSearches = () => {
+  addToStorage ('selected_language', $('#search_form select[name="selected_language"]').val());
+  addToStorage ('search_criteria', $('#search_form input[name="search_criteria"]').val());
+  addToStorage ('search_type', $('input[name="search_type"]:checked', '#search_form').val());
+  addToStorage ('search_type_range', $('select[name="search_type_range"]', '#search_form').val());
+  addToStorage ('search_type_numresults', $('select[name="search_type_numresults"]', '#search_form').val());
+  addToStorage ('search_type_sort', $('select[name="search_type_sort"]', '#search_form').val());
+}
+
+// TODO run at page load:
+fillFormFromStorage();
+questionQuery();
+
+$('#search_form').on('change', function (e) {
   e.preventDefault();
+  // TODO run inside button submission
+  retainSearches();
+  console.log('search form event listener')
+  questionQuery();
+});
+
+function questionQuery() {
+  console.log('question query function')
   let selectLang = $('#search_form select[name="selected_language"]').val();
   let numOfKeywords = $('#search_form input[name="search_criteria"]').val().split(' ').length;
   let searchKeywords = $('#search_form input[name="search_criteria"]').val().split(' ').join(';');
@@ -49,10 +100,12 @@ $('#search_form').on('submit', function (e) {
 
           let newQuestion = `
           <div class="result">
-            <img class="result_img" src="${questionObj.user_image}" alt="profile pic"/>
+            <a href="${questionObj.user_link}" target="_blank">
+              <img class="result_img" src="${questionObj.user_image}" alt="profile pic"/>
+            </a>
             <div class="result_inner_container">
-              <a href="${questionObj.link}"><h2>${questionObj.title}</h2></a>
-              <p class="result_user"><a href="${questionObj.user_link}">${questionObj.user}</a></p>
+              <a href="${questionObj.link}" target="_blank"><h2>${questionObj.title}</h2></a>
+              <p class="result_user"><a href="${questionObj.user_link}" target="_blank">${questionObj.user}</a></p>
               <p class="result_answered"><span>Status: </span><span>${answered}</span></p>
             </div>
             <span class="result_date">${new Date(questionObj.creation_date*1000).toDateString()}</span>
@@ -90,67 +143,9 @@ $('#search_form').on('submit', function (e) {
             <span class="result_date">${new Date(questionObj.creation_date*1000).toDateString()}</span>
           </div>
           `
-
           $('#results_section').append(newQuestion);
           })
         })
 
   }
-
-
-
-
-  })
-
-
-  // let language = document.querySelector('#selected_language').value;
-  // let sort = document.querySelector('#selected_sort').value;
-//   let sort = 'reputation';
-//   console.log(`language: ${language}, location: ${location}`);
-//   $.ajax({
-//     url: `${__API_URL__}/api/v1/top-users/`,
-//     method: 'GET',
-//     data: {
-//       location: location,
-//       language: language,
-//       sort: sort
-//     }
-//   }).done(function (data) {
-//     console.log('I recieved something', data);
-//     let thead = `
-//     <thead>
-//       <tr>
-//         <th>Ranking</th>
-//         <th>Name</th>
-//         <th>Reputation</th>
-//         <th>Top Answer Rate</th>
-//         <th>Location</th>
-//       </tr>
-//     </thead>
-//     `;
-//     $('#resultTable').empty().append(thead);
-//     locations = [];
-//     data.forEach((x, i) => {
-//       let tr =
-//         `<tr>
-//           <td>${i + 1}</td>
-//           <td>${x.user}</td>
-//           <td>${x.reputation}</td>
-//           <td>${x.accept_rate}</td>
-//           <td>${x.location}</td>
-//         </tr>
-//         `
-//       $('#resultTable').append(tr);
-//       if (x.location!=="no user location") geocodeAddress(x.location);
-//     })
-//     // $('#resultTable').html(data);
-//   }).fail(function (xhr, status, error) {
-//     console.error(error, xhr);
-//   });
-// });
-// function geocodeAddress(address1) {
-//   $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address1 + '&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w', function (data) {
-//     locations.push([address1, data['results'][0]['geometry']['location']['lat'], data['results'][0]['geometry']['location']['lng']]);
-//     mapRender();
-//   })
-// }
+}

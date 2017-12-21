@@ -4,28 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Stat Overflow - Home</title>
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="icomoon.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="desktop.css">
-
-    <!-- Handlebars Scripts -->
-    <script id="question_results_template" type="text/x-handlebars-template">
-      <div class="result">
-        <img class="result_img" src="{{profile_picture_url}}" alt="profile pic"/>
-        <div class="result_inner_container">
-          <a href="{{question_url}}"><h2>{{question_title}}</h2></a>
-          <p class="result_user"><a href="{{owner_url}}">{{owner_name}}</a></p>
-          <p class="result_answered"><span>Status: </span><span>{{answer_status}}</span></p>
-        </div>
-        <span class="result_date">{{date}}</span>
-      </div>
-    </script>
-
-    <script id="question_count_template" type="text/x-handlebars-template">
-      <p id="results_count">{{num_of_results}} results</p>
-    </script>
-
+    <link rel="stylesheet" href="/css/reset.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/desktop.css">
+    <link rel="icon" type="image/png" href="/images/favicon.ico" />
   </head>
   <body>
     <header>
@@ -35,7 +18,7 @@
       </div>
 
       <nav>
-        <a href="./index.html"><div id="questions_icon" class="icon-home"></div></a>
+        <a href="./index.html"><div id="questions_icon" class="icon-home active"></div></a>
         <a href="./user.html"><div id="users_icon" class="icon-trophy"></div></a>
         <a href="./userlookup.html"><div id="userlookup_icon" class="icon-user"></div></a>
         <!-- <a href="./sitestats.html"><div id="stats_icon" class="icon-stats-bars"></div></a> -->
@@ -48,11 +31,13 @@
           <label>Select the languages you know:</label>
           <label for="selected_language">
             <select name="selected_language">
-              <option value="">All languages</option>
               <option value="Javascript">Javascript</option>
               <option value="C#">C#</option>
-              <option value="C++">Python</option>
+              <option value="C++">C++</option>
               <option value="Python">Python</option>
+              <option value="Ruby">Ruby</option>
+              <option value="PHP">PHP</option>
+              <option value="Objective-c">Objective C</option>
               <option value="Java">Java</option>
             </select>
           </label>
@@ -65,10 +50,17 @@
         </div>
 
         <div id="options_form_container">
-          <label for="search_type" id="search_type">
-            <input type="radio" name="search_type" value="unanswered"> Unanswered
-            <input type="radio" name="search_type" value="popular" checked> Popular
-          </label>
+          <div id="#search_type">
+            <div class="label_container">
+              <input type="radio" name="search_type" value="unanswered" id="unanswered">
+              <label for="unanswered">Unanswered</label>
+            </div>
+          
+            <div class="label_container">
+              <input type="radio" name="search_type" value="popular" checked id="popular">
+              <label for="popular">Popular</label>
+            </div>
+        </div>
           <!-- <label for="search_type_range" class="filter">
             <span>Date range:</span>
             <select name="search_type_range">
@@ -113,11 +105,11 @@
         <a href="https://github.com/statoverflow"><div class="icon-github"></div></a>
       </nav>
 
-      <p id="copyright_info">&copy; Stat Overflow development team (<a href="https://github.com/gricha2380">Gregor</a>, <a href="https://github.com/jpjazzy">Jeremy</a> and <a href="https://github.com/Jordanwvn">Jordan</a>)</p>
+      <p id="copyright_info">&copy; Stat Overflow development team (<a href="https://github.com/gricha2380" target="_blank">Gregor</a>, <a href="https://github.com/jpjazzy" target="_blank">Jeremy</a> and <a href="https://github.com/Jordanwvn" target="_blank">Jordan</a>)</p>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script src="app.js"></script>
+    <script src="/js/app.js"></script>
   </body>
 </html>
