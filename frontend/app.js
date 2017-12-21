@@ -1,27 +1,108 @@
 // Front end JS
 'use strict';
 
+
+/************** NEEDED TERMINAL ENV VARIABLES *****************/
+////////////////////// MAC //////////////////////
+//export PORT=3000
+//export CLIENT_URL=http://localhost:8080
+//export DATABASE_URL=postgres://localhost:5432/books_app
+
+////////////////////// LINUX //////////////////////
+// export PORT=3000
+// export CLIENT_URL='http://localhost:8080'
+// export DATABASE_URL='postgres://postgres:password@localhost:5432/books_app'
+
 let __API_URL__ = 'http://localhost:3000'; // API URL
 
 $('#search_form').on('submit', function (e) {
   e.preventDefault();
   let selectLang = $('#search_form select[name="selected_language"]').val();
-  let searchKeywords = $('#search_form input[name="search_criteria"]').val().split(' ');
+  let numOfKeywords = $('#search_form input[name="search_criteria"]').val().split(' ').length;
+  let searchKeywords = $('#search_form input[name="search_criteria"]').val().split(' ').join(';');
   let qtnType = $('input[name="search_type"]:checked', '#search_form').val();
   let dateRange = $('select[name="search_type_range"]', '#search_form').val();
-  let numOfResults = $('select[name="search_type_numresults"]', '#search_form').val();;
-  let sortBy = $('select[name="search_type_sort"]', '#search_form').val();;
-})
+  let numOfResults = parseInt($('select[name="search_type_numresults"]', '#search_form').val());
+  let sortBy = $('select[name="search_type_sort"]', '#search_form').val();
 
-$.ajax({
-    url: `${__API_URL__}/api/v1/top-users/`,
-    method: 'GET',
-    data: {
-      tags: searchKeywords,
-      language: language,
-      sort: sort
-    }
+
+  if (numOfKeywords > 4){
+    return; // TODO: TELL THE USER TO USE 4 OR LESS KEYWORDS
+  }
+
+  if (qtnType === 'popular') {
+    //Popular AJAX call
+    $.ajax({
+        url: `${__API_URL__}/api/v1/questions/`,
+        method: 'GET',
+        data: {
+          tags: `${searchKeywords};${selectLang}`,
+          pagesize: `${numOfResults}`,
+          sort: `${sortBy}`
+        }
+      })
+      .done(function (data) {
+        console.log('I recieved something', data);
+        $('#results_section').empty();
+        data.forEach(questionObj => {
+          let answered = questionObj.is_answered ? "✓ Answered" : "✗ Unanswered"
+
+          let newQuestion = `
+          <div class="result">
+            <img class="result_img" src="${questionObj.user_image}" alt="profile pic"/>
+            <div class="result_inner_container">
+              <a href="${questionObj.link}"><h2>${questionObj.title}</h2></a>
+              <p class="result_user"><a href="${questionObj.user_link}">${questionObj.user}</a></p>
+              <p class="result_answered"><span>Status: </span><span>${answered}</span></p>
+            </div>
+            <span class="result_date">${new Date(questionObj.creation_date*1000).toDateString()}</span>
+          </div>
+          `
+
+          $('#results_section').append(newQuestion);
+          })
+        })
+  } else {
+    //Unanswered AJAX call
+    $.ajax({
+        url: `${__API_URL__}/api/v1/unanswered-questions/`,
+        method: 'GET',
+        data: {
+          tags: `${searchKeywords};${selectLang}`,
+          pagesize: `${numOfResults}`,
+          sort: `${sortBy}`
+        }
+      })
+      .done(function (data) {
+        console.log('I recieved something', data);
+        $('#results_section').empty();
+        data.forEach(questionObj => {
+          let answered = questionObj.is_answered ? "✓ Answered" : "✗ Unanswered"
+
+          let newQuestion = `
+          <div class="result">
+            <img class="result_img" src="${questionObj.user_image}" alt="profile pic"/>
+            <div class="result_inner_container">
+              <a href="${questionObj.link}"><h2>${questionObj.title}</h2></a>
+              <p class="result_user"><a href="${questionObj.user_link}">${questionObj.user}</a></p>
+              <p class="result_answered"><span>Status: </span><span>${answered}</span></p>
+            </div>
+            <span class="result_date">${new Date(questionObj.creation_date*1000).toDateString()}</span>
+          </div>
+          `
+
+          $('#results_section').append(newQuestion);
+          })
+        })
+
+  }
+
+
+
+
   })
+
+
   // let language = document.querySelector('#selected_language').value;
   // let sort = document.querySelector('#selected_sort').value;
 //   let sort = 'reputation';

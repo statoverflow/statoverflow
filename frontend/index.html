@@ -38,7 +38,7 @@
         <a href="./index.html"><div id="questions_icon" class="icon-home"></div></a>
         <a href="./user.html"><div id="users_icon" class="icon-trophy"></div></a>
         <a href="./userlookup.html"><div id="userlookup_icon" class="icon-user"></div></a>
-        <a href="./sitestats.html"><div id="stats_icon" class="icon-stats-bars"></div></a>
+        <!-- <a href="./sitestats.html"><div id="stats_icon" class="icon-stats-bars"></div></a> -->
       </nav>
     </header>
 
@@ -48,7 +48,7 @@
           <label>Select the languages you know:</label>
           <label for="selected_language">
             <select name="selected_language">
-              <option value="All languages">All languages</option>
+              <option value="">All languages</option>
               <option value="Javascript">Javascript</option>
               <option value="C#">C#</option>
               <option value="C++">Python</option>
@@ -66,10 +66,10 @@
 
         <div id="options_form_container">
           <label for="search_type" id="search_type">
-            <input type="radio" name="search_type" value="unanswered" checked> Unanswered
-            <input type="radio" name="search_type" value="popular"> Popular
+            <input type="radio" name="search_type" value="unanswered"> Unanswered
+            <input type="radio" name="search_type" value="popular" checked> Popular
           </label>
-          <label for="search_type_range" class="filter">
+          <!-- <label for="search_type_range" class="filter">
             <span>Date range:</span>
             <select name="search_type_range">
               <option value="All time">All time</option>
@@ -77,21 +77,21 @@
               <option value="60 days">60 days</option>
               <option value="One year">One year</option>
             </select>
-          </label>
+          </label> -->
           <label for="search_type_numresults" class="filter">
             <span># of results:</span>
             <select name="search_type_numresults">
-              <option value="Top 50">Top 50</option>
-              <option value="Top 75">Top 75</option>
-              <option value="Top 100">Top 100</option>
+              <option value="50">Top 50</option>
+              <option value="75">Top 75</option>
+              <option value="100">Top 100</option>
             </select>
           </label>
           <label for="search_type_sort" class="filter">
             <span>Sort by:</span>
             <select name="search_type_sort">
-              <option value="Activity">Activity</option>
-              <option value="Creation">Creation</option>
-              <option value="Votes">Votes</option>
+              <option value="activity">Activity</option>
+              <option value="creation">Creation</option>
+              <option value="votes">Votes</option>
             </select>
           </label>
         </div>
@@ -103,72 +103,8 @@
         </div>
       </form>
 
-      <p id="results_count">000 results</p>
+      <!-- <p id="results_count">000 results</p> -->
       <section id="results_section">
-        <div class="result">
-          <img class="result_img" src="http://placehold.it/100x100" />
-          <div class="result_inner_container">
-            <a href="index.html"><h2>Question title goes here</h2></a>
-            <p class="result_user"><a href="#">User1</a></p>
-            <p class="result_answered"><span>Status: </span><span>✓ Answered</span></p>
-          </div>
-          <span class="result_date">12/19/2017</span>
-        </div>
-        <div class="result">
-          <img class="result_img" src="http://placehold.it/100x100" />
-          <div class="result_inner_container">
-            <a href="index.html"><h2>Question title goes here</h2></a>
-            <p class="result_user"><a href="#">User1</a></p>
-            <p class="result_answered"><span>Status: </span><span>✓ Answered</span></p>
-          </div>
-          <span class="result_date">12/19/2017</span>
-        </div>
-        <div class="result">
-          <img class="result_img" src="http://placehold.it/100x100" />
-          <div class="result_inner_container">
-            <a href="index.html"><h2>Question title goes here</h2></a>
-            <p class="result_user"><a href="#">User1</a></p>
-            <p class="result_answered"><span>Status: </span><span>✓ Answered</span></p>
-          </div>
-          <span class="result_date">12/19/2017</span>
-        </div>
-        <div class="result">
-          <img class="result_img" src="http://placehold.it/100x100" />
-          <div class="result_inner_container">
-            <a href="index.html"><h2>Question title goes here</h2></a>
-            <p class="result_user"><a href="#">User1</a></p>
-            <p class="result_answered"><span>Status: </span><span>✓ Answered</span></p>
-          </div>
-          <span class="result_date">12/19/2017</span>
-        </div>
-        <div class="result">
-          <img class="result_img" src="http://placehold.it/100x100" />
-          <div class="result_inner_container">
-            <a href="index.html"><h2>Question title goes here</h2></a>
-            <p class="result_user"><a href="#">User1</a></p>
-            <p class="result_answered"><span>Status: </span><span>✓ Answered</span></p>
-          </div>
-          <span class="result_date">12/19/2017</span>
-        </div>
-        <div class="result">
-          <img class="result_img" src="http://placehold.it/100x100" />
-          <div class="result_inner_container">
-            <a href="index.html"><h2>Question title goes here</h2></a>
-            <p class="result_user"><a href="#">User1</a></p>
-            <p class="result_answered"><span>Status: </span><span>✓ Answered</span></p>
-          </div>
-          <span class="result_date">12/19/2017</span>
-        </div>
-        <div class="result">
-          <img class="result_img" src="http://placehold.it/100x100" />
-          <div class="result_inner_container">
-            <a href="index.html"><h2>Question title goes here</h2></a>
-            <p class="result_user"><a href="#">User1</a></p>
-            <p class="result_answered"><span>Status: </span><span>✓ Answered</span></p>
-          </div>
-          <span class="result_date">12/19/2017</span>
-        </div>
-
       </section>
     </main>
 
