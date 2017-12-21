@@ -351,3 +351,8 @@ img.logo {
   font-weight: bold;
   display: inline-block;
 }
+
+#map {
+  height: 500px;
+  width: 100%;
+}
