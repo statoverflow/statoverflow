@@ -12,9 +12,8 @@ const superagent = require ('superagent'); // for performing backend AJAX calls
 
 const app = express(); // invoke express
 const PORT = process.env.PORT || 3000; // export PORT=###
-const CLIENT_URL = process.env.CLIENT_URL || 'http://localhost:4567'; // export CLIENT_URL=###
-// const API_KEY = process.env.API_KEY; // export API_KEY='###'
-const API_KEY = 'zTrL2mWOL*xMGPBgdRsWiw((';
+const CLIENT_URL = process.env.CLIENT_URL || 'https://statoverflow.github.io/statoverflow/'; // export CLIENT_URL=###
+const API_KEY = process.env.API_KEY; // export API_KEY='###'
 
 const client = new pg.Client(process.env.DATABASE_URL); // invoke database
 client.connect(); // new pg connection
