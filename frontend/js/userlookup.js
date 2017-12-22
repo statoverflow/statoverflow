@@ -1,4 +1,5 @@
 'use strict';
+function initMap() {}
 
 $( document ).ready(function() {
 
@@ -67,32 +68,31 @@ function geocodeAddress(address1) {
 }
 
 // map render
-function initMap() {
-  // console.log('map render now...', locations)
-  let bound = new google.maps.LatLngBounds();
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 2,
-    center: new google.maps.LatLng(0, 0),
-    mapTypeId: google.maps.MapTypeId.ROADMAP
-  });
-  // map.fitBounds(bound);
-  // map.panToBounds(bound);
-  var infowindow = new google.maps.InfoWindow();
-  var marker, i;
-  for (i = 0; i < locations.length; i++) {
-    console.log('now mapping XY with for loop', locations)
-    marker = new google.maps.Marker({
-      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-      map: map
-    });
-  }
-  google.maps.event.addListener(marker, 'click', (function (marker, i) {
-    return function () {
-      infowindow.setContent(locations[i][0]);
-      infowindow.open(map, marker);
-    }
-  })(marker, i));
-} //end map marker
-//mapRender();
-
+  $(() => {
+  initMap = function() {
+      let bound = new google.maps.LatLngBounds();
+      var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 2,
+        center: new google.maps.LatLng(0, 0),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      });
+      // map.fitBounds(bound);
+      // map.panToBounds(bound);
+      var infowindow = new google.maps.InfoWindow();
+      var marker, i;
+      for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map
+        });
+      }
+      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+        return function () {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    } //end map marker
+  }) // end map render wrapper
+  
 }); // document ready
