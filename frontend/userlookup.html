@@ -4,17 +4,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <title>Stat Overflow - User Lookup</title>
-    <link rel="stylesheet" href="/css/reset.css">
-    <link rel="stylesheet" href="/css/icomoon.css">
-    <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/desktop.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/icomoon.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/desktop.css">
     <link rel="icon" type="image/png" href="/images/favicon.ico" />
   </head>
   <body>
     <header>
       <div class="logo" id="logo_container">
-        <img class="logo" src="./images/logo.svg" alt="stat overflow logo"/>
-        <!-- <h1 class="logo">Stat Overflow</h1> -->
+        <a href="./index.html"><img class="logo" src="./images/logo.svg" alt="stat overflow logo" /></a>
       </div>
 
       <nav>
@@ -25,7 +24,7 @@
       </nav>
     </header>
     <main>
-      <h1>Look up stack overflow user</h1>
+      <h1>Stack Overflow User Search</h1>
 
       <form id="user_search_container">
         <label for="search_user">
@@ -33,20 +32,10 @@
           <button name="search_user_button" id="search_user_button"><div class="icon-search"></div></button>
         </label>
       </form>
-
       <div id="user_search_result">
-        <img id="user_search_img" src="http://placehold.it/100x100" />
-        <div id="user_search_container1">
-          <h2 id="user_search_username"><a href="index.html">Username</a></h2>
-          <p id="user_search_rep">Reputation: #######</p>
-        </div>
-        <div id="user_search_container2">
-          <p id="user_search_date_reg">Date registered: ##-##-####</p>
-          <p id="user_search_date_accessed">Last Accessed: ##-##-####</p>
-        </div>
+        
       </div>
       <div id="user_search_map_container">
-        <p id="user_search_map_location"><b>Location: </b> City, Country</p>
         <div id="map"></div>
       </div>
 
@@ -55,6 +44,7 @@
       <nav>
         <a href="https://github.com/statoverflow"><div class="icon-github"></div></a>
       </nav>
+      <div class="aboutUsLink">About Us</div>
 
       <p id="copyright_info">&copy; Stat Overflow development team (<a href="https://github.com/gricha2380" target="_blank">Gregor</a>, <a href="https://github.com/jpjazzy" target="_blank">Jeremy</a> and <a href="https://github.com/Jordanwvn" target="_blank">Jordan</a>)</p>
     </footer>
@@ -62,6 +52,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
-    <script src="/js/userlookup.js"></script>
+    <script src="./js/userlookup.js"></script>
+    <script src="./js/main.js"></script>
   </body>
 </html>
