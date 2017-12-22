@@ -2,7 +2,7 @@
 let element = document.createElement('div');
 element.setAttribute('id','aboutUs');
 
-document.querySelector('.aboutUsLink').addEventListener('click', function(e){  
+document.querySelector('.aboutUsLink').addEventListener('click', function(e){
   element.innerHTML = `
   <div class="aboutInner">
     <div class="closeButton">X</div>
@@ -19,9 +19,8 @@ document.querySelector('.aboutUsLink').addEventListener('click', function(e){
         <a href="https://github.com/jpjazzy" target="_blank">Jeremy</a>
         <a href="https://github.com/Jordanwvn" target="_blank">Jordan</a>
     </div>
+    <a href="https://github.com/statoverflow" class="githubLink"><div class="icon-github"></div></a>
   </div>
-  <a href="https://github.com/statoverflow"><div class="icon-github"></div></a>
-
   `;
   document.querySelector('main').append(element);
   document.querySelector('.closeButton').addEventListener('click', function(e){
