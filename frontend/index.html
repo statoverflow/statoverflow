@@ -13,8 +13,7 @@
   <body>
     <header>
       <div class="logo" id="logo_container">
-        <img class="logo" src="./images/logo.svg" alt="stat overflow logo"/>
-        <!-- <h1 class="logo">Stat Overflow</h1> -->
+        <a href="./index.html"><img class="logo" src="./images/logo.svg" alt="stat overflow logo" /></a>
       </div>
 
       <nav>
@@ -28,25 +27,27 @@
     <main>
       <form id="search_form">
         <div id="top_form_container">
-          <label>Select the languages you know:</label>
-          <label for="selected_language">
-            <select name="selected_language">
-              <option value="Javascript">Javascript</option>
-              <option value="C#">C#</option>
-              <option value="C++">C++</option>
-              <option value="Python">Python</option>
-              <option value="Ruby">Ruby</option>
-              <option value="PHP">PHP</option>
-              <option value="Objective-c">Objective C</option>
-              <option value="Java">Java</option>
-            </select>
-          </label>
-          <label for="search_criteria">
-            <input type="text" name="search_criteria" placeholder="Specialties (max of 4 keywords)">
-          </label>
-          <label for="search_button_mobile">
-            <button type="submit" name="search_button_mobile"><div class="icon-search"></div></button> <!-- Placeholder for icomoon search icon -->
-          </label>
+          <div class="inner_container">
+            <label><h1>Select the languages you know:</h1></label>
+            <label for="selected_language">
+              <select name="selected_language">
+                <option value="Javascript">Javascript</option>
+                <option value="C#">C#</option>
+                <option value="C++">C++</option>
+                <option value="Python">Python</option>
+                <option value="Ruby">Ruby</option>
+                <option value="PHP">PHP</option>
+                <option value="Objective-c">Objective C</option>
+                <option value="Java">Java</option>
+              </select>
+            </label>
+            <label for="search_criteria">
+              <input type="text" name="search_criteria" placeholder="Specialties (max of 4 keywords)">
+            </label>
+            <label for="search_button_mobile">
+              <button type="submit" name="search_button_mobile"><div class="icon-search"></div></button> <!-- Placeholder for icomoon search icon -->
+            </label>
+          </div>
         </div>
 
         <div id="options_form_container">
@@ -96,20 +97,23 @@
       </form>
 
       <!-- <p id="results_count">000 results</p> -->
-      <section id="results_section">
+      <section id="results_section" class="inner_container">
       </section>
     </main>
 
     <footer>
-      <nav>
-        <a href="https://github.com/statoverflow"><div class="icon-github"></div></a>
-      </nav>
-
-      <p id="copyright_info">&copy; Stat Overflow development team (<a href="https://github.com/gricha2380" target="_blank">Gregor</a>, <a href="https://github.com/jpjazzy" target="_blank">Jeremy</a> and <a href="https://github.com/Jordanwvn" target="_blank">Jordan</a>)</p>
-    </footer>
+        <nav>
+          <a href="https://github.com/statoverflow"><div class="icon-github"></div></a>
+        </nav>
+        <div class="aboutUsLink">About Us</div>
+  
+        <p id="copyright_info">&copy; Stat Overflow development team (<a href="https://github.com/gricha2380" target="_blank">Gregor</a>, <a href="https://github.com/jpjazzy" target="_blank">Jeremy</a> and <a href="https://github.com/Jordanwvn" target="_blank">Jordan</a>)</p>
+      </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="./js/app.js"></script>
+    <script src="./js/main.js"></script>
+
   </body>
 </html>
