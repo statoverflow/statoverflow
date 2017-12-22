@@ -62,12 +62,12 @@ searchUsers();
 function geocodeAddress(address1) {
   $.get('https://maps.googleapis.com/maps/api/geocode/json?address=' + address1 + '&key=AIzaSyAAHNPc_aDQ81b4sL2oLFa79vHn4LJ-s1w').done(function(data){
     locations.push([address1, data['results'][0]['geometry']['location']['lat'], data['results'][0]['geometry']['location']['lng']]);
-    mapRender();
+    initMap();
   })
 }
 
 // map render
-function mapRender() {
+function initMap() {
   // console.log('map render now...', locations)
   let bound = new google.maps.LatLngBounds();
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -93,6 +93,6 @@ function mapRender() {
     }
   })(marker, i));
 } //end map marker
-mapRender();
+//mapRender();
 
 }); // document ready
