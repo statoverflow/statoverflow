@@ -3,10 +3,11 @@
 $( document ).ready(function() {
 
 // globals
-let __API_URL__ = 'http://localhost:3000';
-
 let locations = [''];
-// let locations = ['Bondi Beach', -33.890542, 151.274856, 4];
+
+let __API_URL__ = 'https://statoverflow.herokuapp.com';
+// var locations = [];
+
 
   // event listener for user search
   document.querySelector('#search_user_button').addEventListener('click', function (e) {

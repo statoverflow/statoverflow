@@ -1,6 +1,6 @@
 // event listener to monitor language menu & time frame menu. Send as header info to our API Endpoint.
 // take response and populate it into our table
-let __API_URL__ = 'http://localhost:3000';
+let __API_URL__ = 'https://statoverflow.herokuapp.com';
 document.querySelector('#options_form_container').addEventListener('change', function (e) {
   populateAllUsers();
 });
