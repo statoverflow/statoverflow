@@ -11,6 +11,7 @@ header {
   background: #666;
   color: #FFF;
   padding: .1rem .5rem;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.3);
 }
 
 main h1 {
@@ -18,7 +19,8 @@ main h1 {
   text-align: center;
   padding: 1rem 0;
   font-family: sans-serif;
-  font-weight: initial;
+  color: #e99d1e;
+  font-weight: lighter;
 }
 
 main>h2 {
@@ -238,6 +240,10 @@ img.user_search_img {
   vertical-align: middle;
 }
 
+.user_search_result:nth-child(even) {
+    background: white;
+}
+
 /****************** ID TARGETTING *****************/
 #copyright_info {
   text-align: center;
@@ -267,12 +273,14 @@ img.user_search_img {
 #search_form input[name="search_criteria"] {
   margin: 0 auto;
   width: 85%;
+  padding: .2rem;
 }
 
 #top_form_container button[name="search_button_mobile"] {
   font-size: 20px;
   font-weight: bold;
-
+  height: 33px;
+  vertical-align: top;
 }
 
 #bottom_form_container input[name="search_button"] {
@@ -497,4 +505,17 @@ img.user_search_img {
 
 #aboutUs .aboutImg {
   max-width: 100%;
+}
+
+#search_user_button {
+  font-size: 20px;
+  font-weight: bold;
+  height: 33px;
+  vertical-align: top;
+}
+
+#search_user {      
+   width: 85%;
+   font-size: 20px;
+   padding: .2rem;
 }
