@@ -117,6 +117,7 @@ function questionQuery() {
           $('#results_section').append(newQuestion);
           })
         })
+        .fail(console.log('failed AJAX request'));
   } else {
     //Unanswered AJAX call
     $.ajax({
@@ -148,6 +149,7 @@ function questionQuery() {
           $('#results_section').append(newQuestion);
           })
         })
+        .fail(console.log('failed AJAX request'));
 
   }
 }

@@ -19,7 +19,7 @@ const client = new pg.Client(process.env.DATABASE_URL); // invoke database
 client.connect(); // new pg connection
 client.on('error', err => console.error(err)); // send error message to server
 
-// app.use(cors()); // if cross origin becomes an issue
+app.use(cors()); // if cross origin becomes an issue
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: true}));
 app.use(express.static('../frontend'));
